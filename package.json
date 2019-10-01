@@ -1,0 +1,15 @@
+{
+  "name": "elevate",
+  "version": "1.0.0",
+  "description": "This programming challenge is to build an app that simulates elevators in the building as part of the Kuali interview process.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "keywords": [
+    "node.js",
+    "programming-challenge"
+  ],
+  "author": "Matthew McGuff",
+  "license": "ISC"
+}
