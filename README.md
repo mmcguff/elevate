@@ -6,20 +6,30 @@
 You’re designing the software that simulates elevators in a building.
 Design a set of objects that will manage elevator movement and interaction between the
 elevators. The elevator simulation should support these features:
-1. Initialize the elevator simulation with the desired number of elevators, and the desired
-number of floors. Assume ground/min of 1.
-2. Each elevator will report as is moves from floor to floor.
-3. Each elevator will report when it opens or closes its doors.
-4. An elevator cannot proceed above the top floor.
-5. An elevator cannot proceed below the ground floor (assume 1 as the min)
-6. An elevator request can be made at any floor, to go to any other floor.
+1. Initialize the elevator simulation with the desired number of elevators, and the desired number of floors. Assume ground/min of 1. `done`
+2. Each elevator will report as is moves from floor to floor. `done`
+3. Each elevator will report when it opens or closes its doors. `done`
+4. An elevator cannot proceed above the top floor. `done`
+5. An elevator cannot proceed below the ground floor (assume 1 as the min) `done`
+6. An elevator request can be made at any floor, to go to any other floor. `done`
 7. When an elevator request is made, the unoccupied elevator closest to it will answer the
 call, unless an occupied elevator is moving and will pass that floor on its way. The
 exception is that if an unoccupied elevator is already stopped at that floor, then it will
-always have the highest priority answering that call.
+always have the highest priority answering that call. `todo`
+
+*With more time I would have implemented the following:
+
+A Method in the Building class called `pressButtonForElevator` that would have taken the entire elvator array and compared done the following:
+
+*  Filtered out any ones that are left active
+*  Filter out populated trip queue moving away from the request floor
+*  Select closest elevator that was left.
+*  If more than one elevator exists then choose the one with smallest trip queue.
+*  If a tie still exists then pick on at random.  
+
 8. The elevator should keep track of how many trips it has made, and how many floors it
 has passed. The elevator should go into maintenance mode after 100 trips, and stop
-functioning until serviced, therefore not be available for elevator calls.
+functioning until serviced, therefore not be available for elevator calls. `done`
 Some things to think about in this design:
 1. Should you take an approach using an elevator controller, or have the elevators
 communicate amongst themselves to find an optimal solution?
@@ -53,5 +63,3 @@ The elevator has several pieces of state that need to tracked.  I am thinking ri
 The entry point of my application app.js will contain code to initilize one building and all the elevators will be needed to run the simmulation.  At first will shooting to create strict node console application.  The simulation will basically call the different methods in building and elevator to simulate the movements.  Most importantly I will shoot to demostrate the the logic of selecting the best elevator(the elevator the is best available to respond to floor request).  Once this is achieved I will shoot for making this more visual in the console or even possibly adding routes into the objects so an API can be created that frontend could connect to demostrate the application. 
 
 I see the simulation having two possible modes.  An interactive mode that allows one to select the action they want to take on each floor and a automatic mode that will just run a plan sequence of events simulating the action of an elevator.  The interactive will be more difficult so my first goal will be the automtic followed by interactive.  
-
-Here we go!  My first commmit!  

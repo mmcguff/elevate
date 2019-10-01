@@ -25,7 +25,18 @@ class Building {
 
     //The request of elevator including the floor the request was made and up or down
     pressButtonForElevator(floor, direction){
-        this.getBestElevator()
+        let elevator = this.elevators;
+
+        //filter out any elevators where isRunning is false
+        elevator = elevator.filter((elevator) => {
+            elevator.isRunning != true;
+        });
+
+        //filter any elevators where trip queue is moving away from floor
+        //select the closest elevator
+        //If more than one is left then closest elevator with smallest countTrips
+        //If tied then randomly select
+
     }
 }
 
