@@ -1,15 +1,15 @@
-//elevator class
+const sleep = require('sleep'); //easy library to timeout for simulating elevator movements.
 
 class Elevator {
     
-    constructor(name, floors, currentFloor, ){
+    constructor(name, floors, currentFloor){
         this.name = name;
         this.floors = floors;
         this.maxTrips = 100;  //configurable but hardcoded per the spec
 
         this.isRunning = true;  
         this.currentFloor = currentFloor; //User can decide where elevator starts.
-        this.direction = 'up' //up down or none
+        this.direction = 'none' //up down or none
         this.isDoorClosed = true // false if door is open. only two states
         this.travelQueue = [];  //array contains values of floors traveling to.
         this.tripCount = 0; //number of complete trips
@@ -28,7 +28,35 @@ class Elevator {
         }
 
         this.travelQueue.push(floor);
+        this.move();
         return console.log(`Elevator ${this.name} button pressed to go to floor ${floor}.`);
+    }
+
+    move(){
+        if(this.travelQueue[0] > this.currentFloor){
+            this.direction = 'up';
+            while(this.travelQueue[0] != this.currentFloor){
+                this.currentFloor++;
+                this.floorsTravledCount++;
+                console.log(`Elevator ${this.name} has moved up to ${this.currentFloor} going to ${this.travelQueue[0]}.`);
+                sleep.sleep(1);
+            }
+        }
+        if(this.travelQueue[0] < this.currentFloor){
+            this.direction = 'down';
+            while(this.travelQueue[0] != this.currentFloor){
+                this.currentFloor--;
+                this.floorsTravledCount++;
+                console.log(`Elevator ${this.name} has moved down to ${this.currentFloor} going to ${this.travelQueue[0]}.`);
+                sleep.sleep(1);
+            }
+        }
+        this.tripCount++;
+        this.travelQueue.shift();
+        this.openDoor();
+        if(this.trips > this.maxTrips){
+            this.stop();
+        } 
     }
 
     restart(){
@@ -61,4 +89,35 @@ class Elevator {
         else return console.log(`Elevator ${this.name} is not currently running`);
     }
 
+    pressButton(button){
+        switch (button) {
+            case "stop":
+                this.stop();
+                break;
+            case "openDoor":
+                this.openDoor();
+                break;
+            case "closeDoor":
+                this.closeDoor();
+                break;
+            default:
+                this.addFloorToTravelQueue = button;
+        }
+    }
+
+    status(){
+        return {
+            name: this.name,
+            runningStatus: this.runningStatus ? 'running' : 'stopped',
+            currentFloor: this.currentFloor,
+            doorStatus: this.isDoorClosed ? 'closed' : 'open',
+            tripCount: this.tripCount,
+            floorsTraveledCount: this.floorsTravledCount,
+            travelQueue: this.travelQueue,
+            direction: this.direction
+        }
+    }
+
 }
+
+module.exports = Elevator;

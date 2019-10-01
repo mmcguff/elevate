@@ -2,9 +2,13 @@
 const Building = require('./building');
 
 //create a new building instance
-const bldg = new Building('Kuali Building', 10);
+const buildingName = 'Kuali Building';
+const buildingFloors = 10;
+const bldg = new Building(buildingName, buildingFloors);
 
-//create a new instance for each elevator 
+//create a new instance for each elevator
+ const east = bldg.setElevator('East', buildingFloors, 1);
+ const west = bldg.setElevator('West', buildingFloors, 3);
 
 
 function start(){

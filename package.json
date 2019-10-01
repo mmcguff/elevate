@@ -11,5 +11,8 @@
     "programming-challenge"
   ],
   "author": "Matthew McGuff",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "sleep": "^6.1.0"
+  }
 }

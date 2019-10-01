@@ -19,8 +19,8 @@ class Building {
     }
 
     //Adding an elevator to the building by name
-    setElevator(elevatorName){
-        this.elevators.push(new Elevator());
+    setElevator(elevatorName, floors, currentFloor){
+        this.elevators.push(new Elevator(elevatorName, floors, currentFloor));
     }
 
     //The request of elevator including the floor the request was made and up or down
