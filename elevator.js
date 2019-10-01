@@ -42,7 +42,7 @@ class Elevator {
                 this.currentFloor++;
                 this.floorsTravledCount++;
                 console.log(`Elevator ${this.name} has moved up to ${this.currentFloor} going to ${this.travelQueue[0]}.`);
-               // sleep.sleep(1);
+               sleep.sleep(1);
             }
         }
         if(this.travelQueue[0] < this.currentFloor){
@@ -51,7 +51,7 @@ class Elevator {
                 this.currentFloor--;
                 this.floorsTravledCount++;
                 console.log(`Elevator ${this.name} has moved down to ${this.currentFloor} going to ${this.travelQueue[0]}.`);
-                //sleep.sleep(1);
+                sleep.sleep(1);
             }
         }
         this.tripCount++;
@@ -82,7 +82,7 @@ class Elevator {
         if(this.isRunning != false){
             this.isDoorClosed = false;
             console.log(`Elevator ${this.name} has opened on floor ${this.currentFloor}`);
-            //sleep.sleep(5);
+            sleep.sleep(5);
             this.closeDoor();        
         }
         else return console.log(`Elevator ${this.name} is not currently running`);
