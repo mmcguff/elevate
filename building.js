@@ -25,7 +25,7 @@ class Building {
 
     //The request of elevator including the floor the request was made and up or down
     pressButtonForElevator(floor, direction){
-        
+        this.getBestElevator()
     }
 }
 

@@ -4,7 +4,7 @@ const Building = require('./building');
 
 class Elevator {
     
-    constructor(name, floors, currentFloor){
+    constructor(name, floors,currentFloor){
         this.name = name;
         this.floors = floors;
         this.maxTrips = 100;  //configurable but hardcoded per the spec
@@ -42,7 +42,7 @@ class Elevator {
                 this.currentFloor++;
                 this.floorsTravledCount++;
                 console.log(`Elevator ${this.name} has moved up to ${this.currentFloor} going to ${this.travelQueue[0]}.`);
-                sleep.sleep(1);
+               // sleep.sleep(1);
             }
         }
         if(this.travelQueue[0] < this.currentFloor){
@@ -51,11 +51,13 @@ class Elevator {
                 this.currentFloor--;
                 this.floorsTravledCount++;
                 console.log(`Elevator ${this.name} has moved down to ${this.currentFloor} going to ${this.travelQueue[0]}.`);
-                sleep.sleep(1);
+                //sleep.sleep(1);
             }
         }
         this.tripCount++;
+        this.status();
         this.travelQueue.shift();
+        this.direction = 'none';
         this.openDoor();
         if(this.trips > this.maxTrips){
             this.stop();
@@ -80,7 +82,7 @@ class Elevator {
         if(this.isRunning != false){
             this.isDoorClosed = false;
             console.log(`Elevator ${this.name} has opened on floor ${this.currentFloor}`);
-            sleep.sleep(5);
+            //sleep.sleep(5);
             this.closeDoor();        
         }
         else return console.log(`Elevator ${this.name} is not currently running`);
@@ -111,16 +113,16 @@ class Elevator {
     }
 
     status(){
-        return {
+        return console.log({
             name: this.name,
-            runningStatus: this.runningStatus ? 'running' : 'stopped',
+            runningStatus: this.isRunning ? 'running' : 'stopped',
             currentFloor: this.currentFloor,
             doorStatus: this.isDoorClosed ? 'closed' : 'open',
             tripCount: this.tripCount,
             floorsTraveledCount: this.floorsTravledCount,
             travelQueue: this.travelQueue,
             direction: this.direction
-        }
+        });
     }
 
 }
