@@ -1,4 +1,6 @@
 const sleep = require('sleep'); //easy library to timeout for simulating elevator movements.
+const Building = require('./building');
+
 
 class Elevator {
     
@@ -28,8 +30,9 @@ class Elevator {
         }
 
         this.travelQueue.push(floor);
+        console.log(`Elevator ${this.name} button pressed to go to floor ${floor}.`);
         this.move();
-        return console.log(`Elevator ${this.name} button pressed to go to floor ${floor}.`);
+        return; 
     }
 
     move(){
@@ -76,7 +79,9 @@ class Elevator {
     openDoor(){
         if(this.isRunning != false){
             this.isDoorClosed = false;
-            return console.log(`Elevator ${this.name} has opened on floor ${this.currentFloor}`);
+            console.log(`Elevator ${this.name} has opened on floor ${this.currentFloor}`);
+            sleep.sleep(5);
+            this.closeDoor();        
         }
         else return console.log(`Elevator ${this.name} is not currently running`);
     }
@@ -84,7 +89,7 @@ class Elevator {
     closeDoor(){
         if(this.isRunning != false){
             this.isDoorClosed = false;
-            return console.log(`Elevator ${this.name} has opened on floor ${this.currentFloor}`);
+            return console.log(`Elevator ${this.name} has closed on floor ${this.currentFloor}`);
         }
         else return console.log(`Elevator ${this.name} is not currently running`);
     }
